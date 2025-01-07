@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Calculator by Mr. Mausam Shrish</title>
+    <title>Advanced Calculator</title>
     <style>
         /* Basic reset */
         body, html {
@@ -90,12 +90,20 @@
             display: flex;
             justify-content: center;
         }
+
+        /* Footer styles */
+        .footer {
+            margin-top: 20px;
+            font-size: 12px; /* Small font size for footer */
+            color: #777;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
 <div class="calculator-container">
-    <div class="name">Advanced Calculator by Mr. Mausam Shrish</div> <!-- Developer's name -->
+    <div class="name"> Advanced Calculator</div> <!-- Developer's name -->
     <input type="text" id="result" disabled>
 
     <!-- Calculator buttons -->
@@ -138,6 +146,11 @@
     <div class="button-row">
         <button onclick="calculateResult()" class="equal">=</button>
     </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <p>Copyright ©2003-2025~MHN (Mr. Mausam Shrish )</p>
 </div>
 
 <script>
