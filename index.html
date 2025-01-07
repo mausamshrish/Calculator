@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scientific Calculator with Advanced Functions by Mr. Mausam Shrish</title>
+    <title>Advanced Calculator by Mr. Mausam Shrish</title>
     <style>
         /* Basic reset */
         body, html {
@@ -93,7 +93,7 @@
 <body>
 
 <div class="calculator-container">
-    <div class="name">Scientific Calculator with Advanced Functions by Mr. Mausam Shrish</div> <!-- Developer's name -->
+    <div class="name">Advanced Calculator by Mr. Mausam Shrish</div> <!-- Developer's name -->
     <input type="text" id="result" disabled>
 
     <!-- Calculator buttons -->
@@ -171,6 +171,45 @@
             document.getElementById("result").value = 'Error';
         }
     }
+
+    // Listen for keyboard input to simulate button clicks
+    document.addEventListener("keydown", function(event) {
+        let key = event.key;
+
+        if (key >= '0' && key <= '9') {
+            appendToResult(key); // Append digits
+        } else if (key === '+') {
+            appendToResult('+');
+        } else if (key === '-') {
+            appendToResult('-');
+        } else if (key === '*') {
+            appendToResult('*');
+        } else if (key === '/') {
+            appendToResult('/');
+        } else if (key === '.') {
+            appendToResult('.');
+        } else if (key === 'Enter') {
+            calculateResult(); // Calculate result
+        } else if (key === 'Backspace') {
+            clearResult(); // Clear input
+        } else if (key === 's' || key === 'S') {
+            appendToResult('sqrt('); // sqrt function
+        } else if (key === 'p' || key === 'P') {
+            appendToResult('pow('); // pow function (exponentiation)
+        } else if (key === 'l' || key === 'L') {
+            appendToResult('ln('); // ln function (natural log)
+        } else if (key === 't' || key === 'T') {
+            appendToResult('tan('); // tan function
+        } else if (key === 'c' || key === 'C') {
+            appendToResult('cos('); // cos function
+        } else if (key === 'r' || key === 'R') {
+            appendToResult('sin('); // sin function
+        } else if (key === 'p') {
+            appendToResult('pi'); // pi constant
+        } else if (key === 'e') {
+            appendToResult('e'); // Euler constant
+        }
+    });
 </script>
 
 </body>
