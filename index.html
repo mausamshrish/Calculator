@@ -166,11 +166,13 @@
     // Function to append numbers or operators to the result
     function appendToResult(value) {
         document.getElementById("result").value += value;
+        focusInput(); // Ensure the cursor stays in the input field
     }
 
     // Function to clear the result input field
     function clearResult() {
         document.getElementById("result").value = '';
+        focusInput(); // Ensure the cursor stays in the input field
     }
 
     // Function to calculate the result of the expression
@@ -194,6 +196,12 @@
         } catch (e) {
             document.getElementById("result").value = 'Error';
         }
+        focusInput(); // Ensure the cursor stays in the input field
+    }
+
+    // Function to ensure the input field remains focused after any change
+    function focusInput() {
+        document.getElementById("result").focus();
     }
 
     // Listen for keyboard input to simulate button clicks
@@ -213,7 +221,8 @@
         } else if (key === '.') {
             appendToResult('.');
         } else if (key === 'Enter') {
-            calculateResult(); // Always trigger calculation on Enter key
+            event.preventDefault(); // Prevent the default action (form submission or other default behavior)
+            calculateResult(); // Trigger calculation on Enter key
         } else if (key === 'Backspace') {
             clearResult(); // Clear input
         } else if (key === 's' || key === 'S') {
