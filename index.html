@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator by Mr. Mausam Shrish</title>
+    <title>Scientific Calculator by Mr. Mausam Shrish</title>
     <style>
         /* Basic reset */
         body, html {
@@ -24,8 +24,8 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            max-width: 350px; /* Limit max width */
-            max-height: 500px; /* Limit max height */
+            max-width: 400px; /* Increased max width */
+            max-height: 600px; /* Increased max height */
             padding: 20px;
             background-color: #fff;
             border-radius: 10px;
@@ -56,7 +56,7 @@
         button {
             width: 60px; /* Fixed width */
             height: 60px; /* Fixed height */
-            font-size: 22px;
+            font-size: 18px;
             border-radius: 5px;
             margin: 5px;
             background-color: #f1f1f1;
@@ -93,7 +93,7 @@
 <body>
 
 <div class="calculator-container">
-    <div class="name">Calculator by Mr. Mausam Shrish</div> <!-- Developer's name -->
+    <div class="name">Scientific Calculator by Mr. Mausam Shrish</div> <!-- Developer's name -->
     <input type="text" id="result" disabled>
 
     <!-- Calculator buttons -->
@@ -102,24 +102,35 @@
         <button onclick="appendToResult('8')">8</button>
         <button onclick="appendToResult('9')">9</button>
         <button onclick="appendToResult('/')">/</button>
+        <button onclick="appendToResult('sqrt(')">√</button>
     </div>
     <div class="button-row">
         <button onclick="appendToResult('4')">4</button>
         <button onclick="appendToResult('5')">5</button>
         <button onclick="appendToResult('6')">6</button>
         <button onclick="appendToResult('*')">*</button>
+        <button onclick="appendToResult('pow(')">x^y</button>
     </div>
     <div class="button-row">
         <button onclick="appendToResult('1')">1</button>
         <button onclick="appendToResult('2')">2</button>
         <button onclick="appendToResult('3')">3</button>
         <button onclick="appendToResult('-')">-</button>
+        <button onclick="appendToResult('sin(')">sin</button>
     </div>
     <div class="button-row">
         <button onclick="appendToResult('0')">0</button>
         <button onclick="appendToResult('.')">.</button>
         <button onclick="clearResult()" class="clear">C</button>
         <button onclick="appendToResult('+')">+</button>
+        <button onclick="appendToResult('cos(')">cos</button>
+    </div>
+    <div class="button-row">
+        <button onclick="appendToResult('tan(')">tan</button>
+        <button onclick="appendToResult('log(')">log</button>
+        <button onclick="appendToResult('ln(')">ln</button>
+        <button onclick="appendToResult('pi')">π</button>
+        <button onclick="appendToResult('e')">e</button>
     </div>
     <div class="button-row">
         <button onclick="calculateResult()" class="equal">=</button>
@@ -140,8 +151,22 @@
     // Function to calculate the result of the expression
     function calculateResult() {
         try {
-            const result = eval(document.getElementById("result").value);
-            document.getElementById("result").value = result;
+            let result = document.getElementById("result").value;
+
+            // Replace custom function names with JavaScript's equivalents
+            result = result.replace(/sqrt/g, 'Math.sqrt');
+            result = result.replace(/pow/g, 'Math.pow');
+            result = result.replace(/sin/g, 'Math.sin');
+            result = result.replace(/cos/g, 'Math.cos');
+            result = result.replace(/tan/g, 'Math.tan');
+            result = result.replace(/log/g, 'Math.log10');
+            result = result.replace(/ln/g, 'Math.log');
+            result = result.replace(/pi/g, 'Math.PI');
+            result = result.replace(/e/g, 'Math.E');
+            
+            // Calculate the result using eval and display it
+            const calculatedResult = eval(result);
+            document.getElementById("result").value = calculatedResult;
         } catch (error) {
             document.getElementById("result").value = "Error";
         }
@@ -151,12 +176,31 @@
     window.addEventListener('keydown', function(event) {
         const resultField = document.getElementById("result");
 
+        // Numeric and operator keys
         if (event.key >= '0' && event.key <= '9' || event.key === '.' || event.key === '+' || event.key === '-' || event.key === '*' || event.key === '/') {
             resultField.value += event.key;
         }
+        // Scientific function keys
+        else if (event.key === 's') {
+            resultField.value += 'sin(';
+        } else if (event.key === 'c') {
+            resultField.value += 'cos(';
+        } else if (event.key === 't') {
+            resultField.value += 'tan(';
+        } else if (event.key === 'l') {
+            resultField.value += 'log(';
+        } else if (event.key === 'n') {
+            resultField.value += 'ln(';
+        } else if (event.key === 'p') {
+            resultField.value += 'pi';
+        } else if (event.key === 'e') {
+            resultField.value += 'e';
+        }
+        // Enter key for calculation
         else if (event.key === 'Enter') {
             calculateResult();
         }
+        // Backspace to delete last character
         else if (event.key === 'Backspace') {
             resultField.value = resultField.value.slice(0, -1);
         }
