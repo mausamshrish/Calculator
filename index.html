@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scientific Calculator by Mr. Mausam Shrish</title>
+    <title>Advanced Calculator by Mr. Mausam Shrish</title>
     <style>
         /* Basic reset */
         body, html {
@@ -24,8 +24,8 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            max-width: 400px; /* Increased max width */
-            max-height: 600px; /* Increased max height */
+            max-width: 450px; /* Increased max width */
+            max-height: 650px; /* Increased max height */
             padding: 20px;
             background-color: #fff;
             border-radius: 10px;
@@ -93,7 +93,7 @@
 <body>
 
 <div class="calculator-container">
-    <div class="name">Scientific Calculator by Mr. Mausam Shrish</div> <!-- Developer's name -->
+    <div class="name">Scientific & Programmer Calculator by Mr. Mausam Shrish</div> <!-- Developer's name -->
     <input type="text" id="result" disabled>
 
     <!-- Calculator buttons -->
@@ -132,6 +132,23 @@
         <button onclick="appendToResult('pi')">π</button>
         <button onclick="appendToResult('e')">e</button>
     </div>
+
+    <!-- Programmer Mode buttons -->
+    <div class="button-row">
+        <button onclick="appendToResult('0b')">BIN</button>
+        <button onclick="appendToResult('0o')">OCT</button>
+        <button onclick="appendToResult('0x')">HEX</button>
+        <button onclick="appendToResult('0')">DEC</button>
+        <button onclick="appendToResult('&')">AND</button>
+    </div>
+    <div class="button-row">
+        <button onclick="appendToResult('|')">OR</button>
+        <button onclick="appendToResult('^')">XOR</button>
+        <button onclick="appendToResult('~')">NOT</button>
+        <button onclick="appendToResult('<<')"><<</button>
+        <button onclick="appendToResult('>>')">>></button>
+    </div>
+
     <div class="button-row">
         <button onclick="calculateResult()" class="equal">=</button>
     </div>
@@ -153,7 +170,7 @@
         try {
             let result = document.getElementById("result").value;
 
-            // Replace custom function names with JavaScript's equivalents
+            // Replace scientific functions with their JavaScript equivalents
             result = result.replace(/sqrt/g, 'Math.sqrt');
             result = result.replace(/pow/g, 'Math.pow');
             result = result.replace(/sin/g, 'Math.sin');
@@ -163,7 +180,20 @@
             result = result.replace(/ln/g, 'Math.log');
             result = result.replace(/pi/g, 'Math.PI');
             result = result.replace(/e/g, 'Math.E');
-            
+
+            // Replace programmer functions with JavaScript equivalents
+            result = result.replace(/0b[01]+/g, function(match) { return parseInt(match, 2); }); // Convert BIN to DEC
+            result = result.replace(/0o[0-7]+/g, function(match) { return parseInt(match, 8); }); // Convert OCT to DEC
+            result = result.replace(/0x[a-fA-F0-9]+/g, function(match) { return parseInt(match, 16); }); // Convert HEX to DEC
+
+            // Perform bitwise operations
+            result = result.replace(/([01]+)&([01]+)/g, function(match, p1, p2) { return parseInt(p1, 2) & parseInt(p2, 2); });
+            result = result.replace(/([01]+)\|([01]+)/g, function(match, p1, p2) { return parseInt(p1, 2) | parseInt(p2, 2); });
+            result = result.replace(/([01]+)\^([01]+)/g, function(match, p1, p2) { return parseInt(p1, 2) ^ parseInt(p2, 2); });
+            result = result.replace(/~([01]+)/g, function(match, p1) { return (~parseInt(p1, 2)) >>> 0; });
+            result = result.replace(/([01]+)<<([0-9]+)/g, function(match, p1, p2) { return (parseInt(p1, 2) << parseInt(p2)); });
+            result = result.replace(/([01]+)>>([0-9]+)/g, function(match, p1, p2) { return (parseInt(p1, 2) >> parseInt(p2)); });
+
             // Calculate the result using eval and display it
             const calculatedResult = eval(result);
             document.getElementById("result").value = calculatedResult;
@@ -195,6 +225,20 @@
             resultField.value += 'pi';
         } else if (event.key === 'e') {
             resultField.value += 'e';
+        }
+        // Programmer function keys
+        else if (event.key === '&') {
+            resultField.value += '&';
+        } else if (event.key === '|') {
+            resultField.value += '|';
+        } else if (event.key === '^') {
+            resultField.value += '^';
+        } else if (event.key === '~') {
+            resultField.value += '~';
+        } else if (event.key === '<') {
+            resultField.value += '<<';
+        } else if (event.key === '>') {
+            resultField.value += '>>';
         }
         // Enter key for calculation
         else if (event.key === 'Enter') {
