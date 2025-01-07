@@ -108,7 +108,7 @@
 <body>
 
 <div class="calculator-container">
-    <div class="name">Scientific Calculator with Advanced Functions </div> <!-- Developer's name -->
+    <div class="name">Scientific Calculator with Advanced Functions</div> <!-- Developer's name -->
     <input type="text" id="result" disabled>
 
     <!-- Calculator buttons -->
@@ -209,7 +209,7 @@
         } else if (key === '.') {
             appendToResult('.');
         } else if (key === 'Enter') {
-            calculateResult(); // Calculate result
+            calculateResult(); // Always trigger calculation on Enter key
         } else if (key === 'Backspace') {
             clearResult(); // Clear input
         } else if (key === 's' || key === 'S') {
