@@ -146,6 +146,21 @@
             document.getElementById("result").value = "Error";
         }
     }
+
+    // Function to handle keyboard input
+    window.addEventListener('keydown', function(event) {
+        const resultField = document.getElementById("result");
+
+        if (event.key >= '0' && event.key <= '9' || event.key === '.' || event.key === '+' || event.key === '-' || event.key === '*' || event.key === '/') {
+            resultField.value += event.key;
+        }
+        else if (event.key === 'Enter') {
+            calculateResult();
+        }
+        else if (event.key === 'Backspace') {
+            resultField.value = resultField.value.slice(0, -1);
+        }
+    });
 </script>
 
 </body>
