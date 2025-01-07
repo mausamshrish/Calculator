@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Calculator by Mr. Mausam Shrish</title>
+    <title>Scientific Calculator with Advanced Functions by Mr. Mausam Shrish</title>
     <style>
         /* Basic reset */
         body, html {
@@ -93,7 +93,7 @@
 <body>
 
 <div class="calculator-container">
-    <div class="name">Advanced Calculator by Mr. Mausam Shrish</div> <!-- Developer's name -->
+    <div class="name">Scientific Calculator with Advanced Functions by Mr. Mausam Shrish</div> <!-- Developer's name -->
     <input type="text" id="result" disabled>
 
     <!-- Calculator buttons -->
@@ -133,31 +133,6 @@
         <button onclick="appendToResult('e')">e</button>
     </div>
 
-    <!-- Programmer Mode buttons -->
-    <div class="button-row">
-        <button onclick="appendToResult('0b')">BIN</button>
-        <button onclick="appendToResult('0o')">OCT</button>
-        <button onclick="appendToResult('0x')">HEX</button>
-        <button onclick="appendToResult('0')">DEC</button>
-        <button onclick="appendToResult('&')">AND</button>
-    </div>
-    <div class="button-row">
-        <button onclick="appendToResult('|')">OR</button>
-        <button onclick="appendToResult('^')">XOR</button>
-        <button onclick="appendToResult('~')">NOT</button>
-        <button onclick="appendToResult('<<')"><<</button>
-        <button onclick="appendToResult('>>')">>></button>
-    </div>
-
-    <!-- Conversion buttons -->
-    <div class="button-row">
-        <button onclick="convertToHex()">Oct to Hex</button>
-        <button onclick="convertToOct()">Hex to Oct</button>
-        <button onclick="convertToDecimal()">Oct/Hex to Dec</button>
-        <button onclick="convertToHexFromDec()">Dec to Hex</button>
-        <button onclick="convertToOctFromDec()">Dec to Oct</button>
-    </div>
-
     <div class="button-row">
         <button onclick="calculateResult()" class="equal">=</button>
     </div>
@@ -190,14 +165,13 @@
             result = result.replace(/pi/g, 'Math.PI');
             result = result.replace(/e/g, 'Math.E');
 
-            // Replace programmer functions with JavaScript equivalents
-            result = result.replace(/0b[01]+/g, function(match) { return parseInt(match, 2); }); // Convert BIN to DEC
-            result = result.replace(/0o[0-7]+/g, function(match) { return parseInt(match, 8); }); // Convert OCT to DEC
-            result = result.replace(/0x[a-fA-F0-9]+/g, function(match) { return parseInt(match, 16); }); // Convert HEX to DEC
+            // Now evaluate the mathematical expression
+            document.getElementById("result").value = eval(result);
+        } catch (e) {
+            document.getElementById("result").value = 'Error';
+        }
+    }
+</script>
 
-            // Perform bitwise operations
-            result = result.replace(/([01]+)&([01]+)/g, function(match, p1, p2) { return parseInt(p1, 2) & parseInt(p2, 2); });
-            result = result.replace(/([01]+)\|([01]+)/g, function(match, p1, p2) { return parseInt(p1, 2) | parseInt(p2, 2); });
-            result = result.replace(/([01]+)\^([01]+)/g, function(match, p1, p2) { return parseInt(p1, 2) ^ parseInt(p2, 2); });
-            result = result.replace(/~([01]+)/g, function(match, p1) { return (~parseInt(p1, 2)) >>> 0; });
-            result = result.replace(/([01
+</body>
+</html>
