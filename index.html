@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator by Mr. Mauam Shrish</title> <!-- Title updated with developer name -->
+    <title>Calculator by Mr. Mausam Shrish</title> <!-- Title updated with developer name -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,12 +14,17 @@
             background-color: #f4f4f4;
             margin: 0;
         }
+        .calculator-container {
+            text-align: center;
+        }
         .calculator {
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            width: 300px;
+            width: 260px;  /* Fixed width for standard size */
+            height: 400px; /* Fixed height for standard size */
+            margin-top: 20px;
         }
         input {
             width: 100%;
@@ -32,8 +36,8 @@
             border: 1px solid #ccc;
         }
         button {
-            width: 70px;
-            height: 70px;
+            width: 60px;   /* Fixed width for uniform button size */
+            height: 60px;  /* Fixed height for uniform button size */
             font-size: 20px;
             border-radius: 5px;
             margin: 5px;
@@ -55,39 +59,48 @@
             background-color: #ff6347;
             color: white;
         }
+        .name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
 
-<div class="calculator">
-    <input type="text" id="result" disabled>
+<div class="calculator-container">
+    <div class="name">Calculator by Mr. Mausam Shrish</div> <!-- Developer's name displayed here -->
+    <div class="calculator">
+        <input type="text" id="result" disabled>
 
-    <div>
-        <button onclick="appendToResult('7')">7</button>
-        <button onclick="appendToResult('8')">8</button>
-        <button onclick="appendToResult('9')">9</button>
-        <button onclick="appendToResult('/')">/</button>
-    </div>
-    <div>
-        <button onclick="appendToResult('4')">4</button>
-        <button onclick="appendToResult('5')">5</button>
-        <button onclick="appendToResult('6')">6</button>
-        <button onclick="appendToResult('*')">*</button>
-    </div>
-    <div>
-        <button onclick="appendToResult('1')">1</button>
-        <button onclick="appendToResult('2')">2</button>
-        <button onclick="appendToResult('3')">3</button>
-        <button onclick="appendToResult('-')">-</button>
-    </div>
-    <div>
-        <button onclick="appendToResult('0')">0</button>
-        <button onclick="appendToResult('.')">.</button>
-        <button onclick="clearResult()" class="clear">C</button>
-        <button onclick="appendToResult('+')">+</button>
-    </div>
-    <div>
-        <button onclick="calculateResult()" class="equal">=</button>
+        <div>
+            <button onclick="appendToResult('7')">7</button>
+            <button onclick="appendToResult('8')">8</button>
+            <button onclick="appendToResult('9')">9</button>
+            <button onclick="appendToResult('/')">/</button>
+        </div>
+        <div>
+            <button onclick="appendToResult('4')">4</button>
+            <button onclick="appendToResult('5')">5</button>
+            <button onclick="appendToResult('6')">6</button>
+            <button onclick="appendToResult('*')">*</button>
+        </div>
+        <div>
+            <button onclick="appendToResult('1')">1</button>
+            <button onclick="appendToResult('2')">2</button>
+            <button onclick="appendToResult('3')">3</button>
+            <button onclick="appendToResult('-')">-</button>
+        </div>
+        <div>
+            <button onclick="appendToResult('0')">0</button>
+            <button onclick="appendToResult('.')">.</button>
+            <button onclick="clearResult()" class="clear">C</button>
+            <button onclick="appendToResult('+')">+</button>
+        </div>
+        <div>
+            <button onclick="calculateResult()" class="equal">=</button>
+        </div>
     </div>
 </div>
 
