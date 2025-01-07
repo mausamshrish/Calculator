@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Calculator by Mr. Mausam Shrish</title>
+    <title>Advanced by Mr. Mausam Shrish</title>
     <style>
         /* Basic reset */
         body, html {
@@ -16,7 +16,7 @@
             align-items: center;
             background-color: #f4f4f4;
         }
-        
+
         /* Calculator container */
         .calculator-container {
             display: flex;
@@ -24,8 +24,8 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            max-width: 450px; /* Increased max width */
-            max-height: 650px; /* Increased max height */
+            max-width: 500px; /* Increased max width */
+            max-height: 700px; /* Increased max height */
             padding: 20px;
             background-color: #fff;
             border-radius: 10px;
@@ -93,7 +93,7 @@
 <body>
 
 <div class="calculator-container">
-    <div class="name">Scientific & Programmer Calculator by Mr. Mausam Shrish</div> <!-- Developer's name -->
+    <div class="name">Scientific & Programmer Calculator with Conversion by Mr. Mausam Shrish</div> <!-- Developer's name -->
     <input type="text" id="result" disabled>
 
     <!-- Calculator buttons -->
@@ -149,6 +149,15 @@
         <button onclick="appendToResult('>>')">>></button>
     </div>
 
+    <!-- Conversion buttons -->
+    <div class="button-row">
+        <button onclick="convertToHex()">Oct to Hex</button>
+        <button onclick="convertToOct()">Hex to Oct</button>
+        <button onclick="convertToDecimal()">Oct/Hex to Dec</button>
+        <button onclick="convertToHexFromDec()">Dec to Hex</button>
+        <button onclick="convertToOctFromDec()">Dec to Oct</button>
+    </div>
+
     <div class="button-row">
         <button onclick="calculateResult()" class="equal">=</button>
     </div>
@@ -191,65 +200,4 @@
             result = result.replace(/([01]+)\|([01]+)/g, function(match, p1, p2) { return parseInt(p1, 2) | parseInt(p2, 2); });
             result = result.replace(/([01]+)\^([01]+)/g, function(match, p1, p2) { return parseInt(p1, 2) ^ parseInt(p2, 2); });
             result = result.replace(/~([01]+)/g, function(match, p1) { return (~parseInt(p1, 2)) >>> 0; });
-            result = result.replace(/([01]+)<<([0-9]+)/g, function(match, p1, p2) { return (parseInt(p1, 2) << parseInt(p2)); });
-            result = result.replace(/([01]+)>>([0-9]+)/g, function(match, p1, p2) { return (parseInt(p1, 2) >> parseInt(p2)); });
-
-            // Calculate the result using eval and display it
-            const calculatedResult = eval(result);
-            document.getElementById("result").value = calculatedResult;
-        } catch (error) {
-            document.getElementById("result").value = "Error";
-        }
-    }
-
-    // Function to handle keyboard input
-    window.addEventListener('keydown', function(event) {
-        const resultField = document.getElementById("result");
-
-        // Numeric and operator keys
-        if (event.key >= '0' && event.key <= '9' || event.key === '.' || event.key === '+' || event.key === '-' || event.key === '*' || event.key === '/') {
-            resultField.value += event.key;
-        }
-        // Scientific function keys
-        else if (event.key === 's') {
-            resultField.value += 'sin(';
-        } else if (event.key === 'c') {
-            resultField.value += 'cos(';
-        } else if (event.key === 't') {
-            resultField.value += 'tan(';
-        } else if (event.key === 'l') {
-            resultField.value += 'log(';
-        } else if (event.key === 'n') {
-            resultField.value += 'ln(';
-        } else if (event.key === 'p') {
-            resultField.value += 'pi';
-        } else if (event.key === 'e') {
-            resultField.value += 'e';
-        }
-        // Programmer function keys
-        else if (event.key === '&') {
-            resultField.value += '&';
-        } else if (event.key === '|') {
-            resultField.value += '|';
-        } else if (event.key === '^') {
-            resultField.value += '^';
-        } else if (event.key === '~') {
-            resultField.value += '~';
-        } else if (event.key === '<') {
-            resultField.value += '<<';
-        } else if (event.key === '>') {
-            resultField.value += '>>';
-        }
-        // Enter key for calculation
-        else if (event.key === 'Enter') {
-            calculateResult();
-        }
-        // Backspace to delete last character
-        else if (event.key === 'Backspace') {
-            resultField.value = resultField.value.slice(0, -1);
-        }
-    });
-</script>
-
-</body>
-</html>
+            result = result.replace(/([01]+)<<([0-9]+)/g, function(match, p1, p2) { return
